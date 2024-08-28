@@ -1,6 +1,11 @@
 #include "hash_list.h"
 
-hash_list::hash_list() {}
+hash_list::hash_list() {
+
+    head = nullptr;
+    iter_ptr = nullptr;
+
+}
 
 /**-----------------------------------------------------------------------------------
  * START Part 1
@@ -8,21 +13,28 @@ hash_list::hash_list() {}
 
 void hash_list::insert(int key, float value) {
 
-    node *newNode = new node(key, value);
-    if (head == NULL) {
+    node *newNode = new node;
+    newNode->key = key;
+    newNode->value = value;
+    newNode->next = nullptr;
+
+    if (head == nullptr) {
         head = newNode;
         size++;
     }
     else {
         node *curr = head;
-        while (curr->next != NULL) {
+        node *prev = nullptr;
+        while (curr != nullptr) {
             if (curr->key == key) {
+                delete newNode;
                 curr->value = value;
                 return;
             }
+            prev = curr;
             curr = curr->next;
         }
-        curr->next = newNode;
+        prev->next = newNode;
         size++;
     }
 
@@ -42,18 +54,23 @@ std::optional<float> hash_list::get_value(int key) const {
 
 bool hash_list::remove(int key) { 
 
-    if (head == NULL) return false;
+    if (head == nullptr) return false;
+
     node *curr = head;
-    node *prev = NULL;
-    while (curr != NULL && curr->key != key) {
+    node *prev = nullptr;
+
+    while (curr != nullptr && curr->key != key) {
         prev = curr;
         curr = curr->next;
     }
-    if (curr == NULL) return false;
-    prev->next = curr->next;
+
+    if (curr == nullptr) return false;
+
+    if (curr == head) head = curr->next;
+    else prev->next = curr->next;
     delete curr;
     size--;
-    
+
     return true; 
 }
 

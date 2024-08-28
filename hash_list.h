@@ -17,8 +17,6 @@ struct node
     /** a pointer to the next node */
     node *next;
 
-    // Constructor for node
-    node(int k, float v) : key(k), value(v), next(NULL) {}
 };
 
 /** A list that stores key/value pairs */
@@ -154,7 +152,7 @@ public:
 private:
 
     /** The number of nodes in the list */
-    size_t size;
+    size_t size = 0;
 
     /** A pointer to the first node in the list */
     node *head;

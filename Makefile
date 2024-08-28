@@ -33,7 +33,10 @@ trace_%.cpp : trace_%.txt
 	python3 trace_files/compile_trace.py $<
 
 part1: $(ALL_SRC)
-	$(CC) $(CFLAGS) $^ -DPART1 -o $(APP)	
+	$(CC) $(CFLAGS) $^ -DPART1 -o $(APP)
+
+testmem: $(ALL_SRC)
+	valgrind $(CC) $(CFLAGS) $^ -DPART1 -o $(APP)
 
 part2: $(ALL_SRC)
 	$(CC) $(CFLAGS) $^ -DPART1 -DPART2 -o $(APP)

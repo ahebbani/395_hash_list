@@ -48,6 +48,12 @@ int main(int argc, char *argv[])
     list.insert(4, 4);
     list.insert(5, 5);
     list.insert(6, 6);
+    trace_1();
+    trace_2();
+    trace_3();
+    trace_4();
+    trace_5();
+
 
     if (list.get_size() != 4)
     {
