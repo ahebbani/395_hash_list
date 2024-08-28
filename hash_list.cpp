@@ -52,6 +52,7 @@ bool hash_list::remove(int key) {
     if (curr == NULL) return false;
     prev->next = curr->next;
     delete curr;
+    size--;
     
     return true; 
 }
@@ -77,24 +78,24 @@ hash_list::~hash_list() {
 
 
 
-// /**-----------------------------------------------------------------------------------
-//  * START Part 2
-//  *------------------------------------------------------------------------------------*/
+/**-----------------------------------------------------------------------------------
+ * START Part 2
+ *------------------------------------------------------------------------------------*/
 
-// hash_list::hash_list(const hash_list &other) {}
+hash_list::hash_list(const hash_list &other) {}
 
-// hash_list &hash_list::operator=(const hash_list &other) { return *this; }
+hash_list &hash_list::operator=(const hash_list &other) { return *this; }
 
-// void hash_list::reset_iter() {}
-
-
-// void hash_list::increment_iter() {}
+void hash_list::reset_iter() {}
 
 
-// std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { return std::nullopt; }
+void hash_list::increment_iter() {}
 
 
-// bool hash_list::iter_at_end() { return false; }
-// /**-----------------------------------------------------------------------------------
-//  * END Part 2
-//  *------------------------------------------------------------------------------------*/
+std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { return std::nullopt; }
+
+
+bool hash_list::iter_at_end() { return false; }
+/**-----------------------------------------------------------------------------------
+ * END Part 2
+ *------------------------------------------------------------------------------------*/
