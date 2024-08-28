@@ -16,6 +16,9 @@ struct node
 
     /** a pointer to the next node */
     node *next;
+
+    // Constructor for node
+    node(int k, float v) : key(k), value(v), next(NULL) {}
 };
 
 /** A list that stores key/value pairs */
@@ -90,63 +93,63 @@ public:
      *------------------------------------------------------------------------------------*/
 
 
-    /**-----------------------------------------------------------------------------------
-     * START Part 2
-     *------------------------------------------------------------------------------------*/
-    /**
-     * @brief The copy constructor
-     * 
-     * @param other
-     *  The list to create a copy of
-     */
-    hash_list(const hash_list &other);
+    // /**-----------------------------------------------------------------------------------
+    //  * START Part 2
+    //  *------------------------------------------------------------------------------------*/
+    // /**
+    //  * @brief The copy constructor
+    //  * 
+    //  * @param other
+    //  *  The list to create a copy of
+    //  */
+    // hash_list(const hash_list &other);
 
-    /**
-     * @brief Assignment operator
-     * 
-     * @param other
-     *  The list to create a copy of 
-     * @return
-     *  A reference to the list that was created. This allows for code like
-     *  a = b = c to work
-     */
-    hash_list &operator=(const hash_list &other);
+    // /**
+    //  * @brief Assignment operator
+    //  * 
+    //  * @param other
+    //  *  The list to create a copy of 
+    //  * @return
+    //  *  A reference to the list that was created. This allows for code like
+    //  *  a = b = c to work
+    //  */
+    // hash_list &operator=(const hash_list &other);
 
-    /**
-     * @brief Resets the iterator back to point to the first element in the list. If the list is 
-     * empty then the iterator is set to NULL.
-     */
-    void reset_iter();
+    // /**
+    //  * @brief Resets the iterator back to point to the first element in the list. If the list is 
+    //  * empty then the iterator is set to NULL.
+    //  */
+    // void reset_iter();
 
-    /**
-     * @brief Moves the iterator to the next element. If the iterator points to the last element
-     * of the list when this is called the iterator is set to NULL. If the iterator is NULL
-     * when this function is called then this function does nothing
-     */
-    void increment_iter();
+    // /**
+    //  * @brief Moves the iterator to the next element. If the iterator points to the last element
+    //  * of the list when this is called the iterator is set to NULL. If the iterator is NULL
+    //  * when this function is called then this function does nothing
+    //  */
+    // void increment_iter();
 
-    /**
-     * @brief Return an optional that contains a pointer to the key and a pointer to the value
-     * of the node pointed to by the iterator. If the iterator is NULL this returns
-     * an empty optional
-     * 
-     * @return
-     *  If the iterator is NULL returns an empty optional
-     *  Otherwise returns a pointer to the key/value pointed to by the current iterator
-     */
-    std::optional<std::pair<const int *, float *>> get_iter_value();
+    // /**
+    //  * @brief Return an optional that contains a pointer to the key and a pointer to the value
+    //  * of the node pointed to by the iterator. If the iterator is NULL this returns
+    //  * an empty optional
+    //  * 
+    //  * @return
+    //  *  If the iterator is NULL returns an empty optional
+    //  *  Otherwise returns a pointer to the key/value pointed to by the current iterator
+    //  */
+    // std::optional<std::pair<const int *, float *>> get_iter_value();
 
-    /**
-     * @brief Returns true if the iterator is NULL
-     * 
-     * @return
-     *  True if the iterator is NULL
-     *  False otherwise
-     */
-    bool iter_at_end();
-    /**-----------------------------------------------------------------------------------
-     * END Part 2
-     *------------------------------------------------------------------------------------*/
+    // /**
+    //  * @brief Returns true if the iterator is NULL
+    //  * 
+    //  * @return
+    //  *  True if the iterator is NULL
+    //  *  False otherwise
+    //  */
+    // bool iter_at_end();
+    // /**-----------------------------------------------------------------------------------
+    //  * END Part 2
+    //  *------------------------------------------------------------------------------------*/
 
 private:
 

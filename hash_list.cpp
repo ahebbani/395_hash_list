@@ -8,49 +8,66 @@ hash_list::hash_list() {}
 
 void hash_list::insert(int key, float value) {
 
-    /*
-    
-    node newnode = malloc(sizeof(node));
-    newnode->key = key;
-    newnode->value = value;
-
-    while(head->next != null) {
-        if(head->key == key && head->value == value) {
-            return; // Use optional
-        }
-        head = head->next;
+    node *newNode = new node(key, value);
+    if (head == NULL) {
+        head = newNode;
+        size++;
     }
-    head->next = newnode;
-
-    */
-
-}
-
-std::optional<float> hash_list::get_value(int key) const { return std::nullopt; }
-
-bool hash_list::remove(int key) { 
-    while (head->next->next != NULL) {
-        if (head->next->key == key) {
-            node temp = head->next->next;
-            free(head->next);
-            head->next = temp;
+    else {
+        node *curr = head;
+        while (curr->next != NULL) {
+            if (curr->key == key) {
+                curr->value = value;
+                return;
+            }
+            curr = curr->next;
         }
-        head = head->next;
-    }
-    return false; 
-}
-
-size_t hash_list::get_size() const { 
-    int size = 0;
-    while(head->next != NULL) {
-        head = head->next;
+        curr->next = newNode;
         size++;
     }
 
-    return 0; 
 }
 
-hash_list::~hash_list() {}
+std::optional<float> hash_list::get_value(int key) const { 
+    
+    node* curr = head;
+
+    while (curr != nullptr) {
+        if (curr->key == key) return curr->value; 
+        curr = curr->next;
+    }
+
+    return std::nullopt; 
+}
+
+bool hash_list::remove(int key) { 
+
+    if (head == NULL) return false;
+    node *curr = head;
+    node *prev = NULL;
+    while (curr != NULL && curr->key != key) {
+        prev = curr;
+        curr = curr->next;
+    }
+    if (curr == NULL) return false;
+    prev->next = curr->next;
+    delete curr;
+    
+    return true; 
+}
+
+size_t hash_list::get_size() const {return size; }
+
+
+hash_list::~hash_list() {
+    node *curr = head;
+    node *next;
+    while (curr != nullptr) {
+        next = curr->next;
+        delete curr;
+        curr = next;
+    }
+}
 
 /**-----------------------------------------------------------------------------------
  * END Part 1
@@ -60,24 +77,24 @@ hash_list::~hash_list() {}
 
 
 
-/**-----------------------------------------------------------------------------------
- * START Part 2
- *------------------------------------------------------------------------------------*/
+// /**-----------------------------------------------------------------------------------
+//  * START Part 2
+//  *------------------------------------------------------------------------------------*/
 
-hash_list::hash_list(const hash_list &other) {}
+// hash_list::hash_list(const hash_list &other) {}
 
-hash_list &hash_list::operator=(const hash_list &other) { return *this; }
+// hash_list &hash_list::operator=(const hash_list &other) { return *this; }
 
-void hash_list::reset_iter() {}
-
-
-void hash_list::increment_iter() {}
+// void hash_list::reset_iter() {}
 
 
-std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { return std::nullopt; }
+// void hash_list::increment_iter() {}
 
 
-bool hash_list::iter_at_end() { return false; }
-/**-----------------------------------------------------------------------------------
- * END Part 2
- *------------------------------------------------------------------------------------*/
+// std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { return std::nullopt; }
+
+
+// bool hash_list::iter_at_end() { return false; }
+// /**-----------------------------------------------------------------------------------
+//  * END Part 2
+//  *------------------------------------------------------------------------------------*/
